@@ -1,0 +1,9 @@
+FROM rust:1.45-slim
+WORKDIR /usr/src/rust-auth-server
+COPY Cargo* ./
+
+# We need to have at least one source file for Cargo to be able to build.
+RUN mkdir src
+RUN echo "fn main() {}" >> src/main.rs
+
+RUN cargo build --release
